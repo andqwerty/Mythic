@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <!-- https://raw.githack.com/andqwerty/Mythic/main/index.html -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Mythic</title>
@@ -75,12 +76,13 @@
             width: 300px;
         }
 
-        #combinationsTable tr td:nth-child(2) {
+        #combinationsTable tr td:nth-child(2),
+        #combinationsTable tr td:nth-child(3) {
             width: 1px;
             text-align: right;
         }
 
-        #combinationsTable tr td:nth-child(3) {
+        #combinationsTable tr td:nth-child(4) {
             width: 370px;
         }
     </style>
@@ -129,6 +131,7 @@
                         <tr>
                             <th>Setup</th>
                             <th>IPM</th>
+                            <th>SPM</th>
                             <th>Buffs</th>
                             <th>Util</th>
                         </tr>
@@ -196,7 +199,7 @@
             var $buffsTd = $('<td>');
             var $utilTd = $('<td>');
             var buffOptions = ['Stam', 'MotW', 'AI', 'BL', 'PI', 'Atrophic', 'Chaos Brand', 'Mystic Touch', 'BS'];
-            var utilOptions = ['CR', 'CC', 'Dispell', 'Soothe'];
+            var utilOptions = ['CR', 'CC', 'Dispell', 'Soothe', 'Invis', 'gdef'];
 
 
             for (var i = 0; i < 5; i++) {
@@ -209,8 +212,10 @@
                     $('<img>').attr('src', c[i].icon)
                 );
             }
+
             $tr.append($combinationTd);
             $tr.append($('<td>').text(Math.floor(compUtil.interruptsPrMinute)));
+            $tr.append($('<td>').text(Math.floor(compUtil.stopsPrMinute)));
 
             // Buffs
             buffOptions.forEach(u => {
@@ -236,13 +241,7 @@
                     .append($img)
                     .append($('<div class="icon-centered">').text(utilCount));
 
-
-
                 $utilTd.append($('<div>').css('width', '40px').css('display', 'inline-block').append($icon));
-
-                // console.log(compUtil.utils);
-
-                // console.log(compUtil.utils.reduce((count, v) => v == 'CR' ? count++ : 0))
             });
 
             $tr.append($utilTd);
@@ -315,6 +314,7 @@
         result.interrupts = (spec.interrupts ?? []).concat(wowclass.interrupts ?? []);
         result.buffs = (spec.buffs ?? []).concat(wowclass.buffs ?? []);
         result.utils = (spec.utils ?? []).concat(wowclass.utils ?? []);
+        result.stops = (spec.stops ?? []).concat(wowclass.stops ?? []);
 
         return result;
     }
@@ -323,18 +323,21 @@
         var interrupts = [];
         var buffs = [];
         var utils = [];
+        var stops = [];
 
         for (var i = 0; i < players.length; i++) {
             interrupts = interrupts.concat(players[i].interrupts);
             buffs = buffs.concat(players[i].buffs);
             utils = utils.concat(players[i].utils);
+            stops = stops.concat(players[i].stops);
         }
 
         return {
             interrupts: interrupts,
             buffs: buffs,
             utils: utils,
-            interruptsPrMinute: interrupts.reduce((v, a) => 60 / a + v, 0)
+            interruptsPrMinute: interrupts.reduce((v, a) => 60 / a + v, 0),
+            stopsPrMinute: stops.reduce((v, a) => 60 / a + v, 0)
         }
     }
 
@@ -353,6 +356,8 @@
             case 'cc': return 'https://wow.zamimg.com/images/wow/icons/medium/spell_nature_polymorph.jpg';
             case 'dispell': return 'https://wow.zamimg.com/images/wow/icons/medium/spell_arcane_massdispel.jpg';
             case 'soothe': return 'https://wow.zamimg.com/images/wow/icons/medium/ability_hunter_beastsoothe.jpg';
+            case 'invis': return 'https://wow.zamimg.com/images/wow/icons/medium/ability_rogue_shroudofconcealment.jpg';
+            case 'gdef': return 'https://wow.zamimg.com/images/wow/icons/medium/spell_holy_powerwordbarrier.jpg';
             default: return 'https://wow.zamimg.com/images/wow/icons/medium/inv_misc_questionmark.jpg';
         }
     }
@@ -370,7 +375,7 @@
             ],
             "interrupts": [15],
             "buffs": [],
-            "utils": ["CR", "Group defensive"],
+            "utils": ["CR", "gdef"],
             "stops": [60]
         },
         {
@@ -381,7 +386,7 @@
             ],
             "interrupts": [15],
             "buffs": "Chaos Brand",
-            "utils": ["CC", "Group defensive"],
+            "utils": ["CC", "gdef"],
             "stops": [45, 90]
         },
         {
@@ -406,7 +411,7 @@
             ],
             "interrupts": [],
             "buffs": ["BL"],
-            "utils": ["Dispell", "Soothe", "CC", "Group defensive"],
+            "utils": ["Dispell", "Soothe", "CC", "gdef"],
             "stops": []
         },
         {
@@ -430,14 +435,14 @@
             ],
             "interrupts": [24],
             "buffs": ["BL", "AI"],
-            "utils": ["shroud", "CC", "Dispell", "Group defensive"],
+            "utils": ["Invis", "CC", "Dispell", "gdef"],
             "stops": [30, 45]
         },
         {
             "name": "Monk",
             "specs": [
                 { "role": "Tank", "name": "Brewmaster" },
-                { "role": "Healer", "name": "Mistweaver", "utils": ["Group defensive"] },
+                { "role": "Healer", "name": "Mistweaver", "utils": ["gdef"] },
                 { "role": "Melee", "name": "Windwalker" }
             ],
             "interrupts": [15],
@@ -461,7 +466,7 @@
             "name": "Priest",
             "specs": [
                 { "role": "Healer", "name": "Holy" },
-                { "role": "Healer", "name": "Discipline", "utils": ["Group defensive"] },
+                { "role": "Healer", "name": "Discipline", "utils": ["gdef"] },
                 { "role": "Ranged", "name": "Shadow", "interrupts": [24] }
             ],
             "interrupts": [],
@@ -478,7 +483,7 @@
             ],
             "interrupts": [15],
             "buffs": ["Atrophic"],
-            "utils": ["shroud", "Soothe"],
+            "utils": ["Invis", "Soothe"],
             "stops": [60]
         },
         {
@@ -514,7 +519,7 @@
             ],
             "interrupts": [15],
             "buffs": ["BS"],
-            "utils": ["Group defensive"],
+            "utils": ["gdef"],
             "stops": [40]
         }
     ];
