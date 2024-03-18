@@ -368,20 +368,21 @@
                 { "role": "Melee", "name": "Frost" },
                 { "role": "Melee", "name": "Unholy" }
             ],
-            "interrupts": [],
+            "interrupts": [15],
             "buffs": [],
-            "utils": ["CR"],
-            "stops": []
+            "utils": ["CR", "Group defensive"],
+            "stops": [60]
         },
         {
             "name": "Demon Hunter",
             "specs": [
-                { "role": "Tank", "name": "Vengeance", "interrupts": [60] },
+                { "role": "Tank", "name": "Vengeance", "interrupts": [60], "stops": [60] },
                 { "role": "Melee", "name": "Havoc" }
             ],
             "interrupts": [15],
             "buffs": "Chaos Brand",
-            "utils": ["CC"]
+            "utils": ["CC", "Group defensive"],
+            "stops": [45, 90]
         },
         {
             "name": "Druid",
@@ -394,29 +395,31 @@
             "interrupts": [],
             "buffs": ["MotW"],
             "utils": ["CR", "CC", "Dispell", "Soothe"],
-            "stops": [90]
+            "stops": [30, 90]
         },
         {
             "name": "Evoker",
             "specs": [
-                { "role": "Healer", "name": "Preservation" },
-                { "role": "Melee", "name": "Devestation", "interrupts": [20] },
-                { "role": "Melee", "name": "Augmentation", "interrupts": [18] }
+                { "role": "Healer", "name": "Preservation", "interrupts": [40], "stops": [90, 90] },
+                { "role": "Ranged", "name": "Devastation", "interrupts": [20], "stops": [90, 90] },
+                { "role": "Ranged", "name": "Augmentation", "interrupts": [18], "stops": [41, 81, 108, 36] }
             ],
             "interrupts": [],
             "buffs": ["BL"],
-            "utils": ["Dispell", "Soothe"]
+            "utils": ["Dispell", "Soothe", "CC", "Group defensive"],
+            "stops": []
         },
         {
             "name": "Hunter",
             "specs": [
-                { "role": "Melee", "name": "Survival" },
-                { "role": "Ranged", "name": "BeastMaster" },
-                { "role": "Ranged", "name": "Marksmanship" }
+                { "role": "Melee", "name": "Survival", "interrupts": [15] },
+                { "role": "Ranged", "name": "BeastMaster", "interrupts": [24] },
+                { "role": "Ranged", "name": "Marksmanship", "interrupts": [24] }
             ],
             "interrupts": [],
             "buffs": ["BL"],
-            "utils": ["CC", "Soothe"]
+            "utils": ["CC", "Soothe"],
+            "stops": []
         },
         {
             "name": "Mage",
@@ -425,42 +428,46 @@
                 { "role": "Ranged", "name": "Frost" },
                 { "role": "Ranged", "name": "Fire" }
             ],
-            "interrupts": [15],
+            "interrupts": [24],
             "buffs": ["BL", "AI"],
-            "utils": ["shroud", "CC", "Dispell"]
+            "utils": ["shroud", "CC", "Dispell", "Group defensive"],
+            "stops": [30, 45]
         },
         {
             "name": "Monk",
             "specs": [
                 { "role": "Tank", "name": "Brewmaster" },
-                { "role": "Healer", "name": "Mistweaver", "utils": ["Dispell"] },
+                { "role": "Healer", "name": "Mistweaver", "utils": ["Group defensive"] },
                 { "role": "Melee", "name": "Windwalker" }
             ],
-            "interrupts": [],
+            "interrupts": [15],
             "buffs": ["Mystic Touch"],
-            "utils": []
+            "utils": ["CC", "Dispell"],
+            "stops": [60, 45]
         },
         {
             "name": "Paladin",
             "specs": [
-                { "role": "Tank", "name": "Protection" },
-                { "role": "Healer", "name": "Holy", "utils": ["Dispell"] },
+                { "role": "Tank", "name": "Protection", "interrupts": [15] },
+                { "role": "Healer", "name": "Holy" },
                 { "role": "Melee", "name": "Retribution" }
             ],
-            "interrupts": [],
+            "interrupts": [15],
             "buffs": [],
-            "utils": ["CR"]
+            "utils": ["CR", "CC", "Dispell"],
+            "stops": [90]
         },
         {
             "name": "Priest",
             "specs": [
                 { "role": "Healer", "name": "Holy" },
-                { "role": "Healer", "name": "Discipline" },
+                { "role": "Healer", "name": "Discipline", "utils": ["Group defensive"] },
                 { "role": "Ranged", "name": "Shadow", "interrupts": [24] }
             ],
             "interrupts": [],
             "buffs": ["Stam", "PI"],
-            "utils": ["Dispell", "CC"]
+            "utils": ["Dispell", "CC"],
+            "stops": [45]
         },
         {
             "name": "Rogue",
@@ -471,18 +478,20 @@
             ],
             "interrupts": [15],
             "buffs": ["Atrophic"],
-            "utils": ["shroud"]
+            "utils": ["shroud", "Soothe"],
+            "stops": [60]
         },
         {
             "name": "Shaman",
             "specs": [
-                { "role": "Healer", "name": "Restoration", "utils": ["Dispell"] },
-                { "role": "Melee", "name": "Enhancement" },
+                { "role": "Healer", "name": "Restoration" },
+                { "role": "Melee", "name": "Enhancement", "stops": [40] },
                 { "role": "Ranged", "name": "Elemental" }
             ],
-            "interrupts": [6],
+            "interrupts": [12],
             "buffs": ["BL"],
-            "utils": []
+            "utils": ["Dispell", "CC"],
+            "stops": [30, 60]
         },
         {
             "name": "Warlock",
@@ -493,7 +502,8 @@
             ],
             "interrupts": [24],
             "buffs": [],
-            "utils": ["CR", "CC", "Dispell"]
+            "utils": ["CR", "CC", "Dispell"],
+            "stops": [60]
         },
         {
             "name": "Warrior",
@@ -504,9 +514,9 @@
             ],
             "interrupts": [15],
             "buffs": ["BS"],
-            "utils": []
+            "utils": ["Group defensive"],
+            "stops": [40]
         }
     ];
 </script>
-
 </html>
