@@ -1,0 +1,116 @@
+:root {
+    --deathknight-color: #c41f3b;
+    --demonhunter-color: #a330c9;
+    --druid-color: #ff7d0a;
+    --evoker-color: #33937f;
+    --hunter-color: #abd473;
+    --mage-color: #69ccf0;
+    --monk-color: #00ff96;
+    --paladin-color: #f58cba;
+    --priest-color: #fff;
+    --rogue-color: #fff569;
+    --shaman-color: #0070de;
+    --warlock-color: #9482c9;
+    --warrior-color: #c79c6e;
+}
+
+html,
+body {
+    font-family: "Work Sans", Helvetica, sans-serif;
+    padding-top: 50px;
+}
+
+.icon-container {
+    position: relative;
+    text-align: center;
+    color: white;
+    font-weight: 600;
+    font-size: 25px;
+}
+
+.icon-centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-shadow: -1px 1px 0 #000,
+        1px 1px 0 #000,
+        1px -1px 0 #000,
+        -1px -1px 0 #000;
+}
+
+.bg-deathknight {
+    background-color: var(--deathknight-color) !important;
+}
+
+.bg-demonhunter {
+    background-color: var(--demonhunter-color) !important;
+}
+
+.bg-druid {
+    background-color: var(--druid-color) !important;
+}
+
+.bg-evoker {
+    background-color: var(--evoker-color) !important;
+}
+
+.bg-hunter {
+    background-color: var(--hunter-color) !important;
+}
+
+.bg-mage {
+    background-color: var(--mage-color) !important;
+}
+
+.bg-monk {
+    background-color: var(--monk-color) !important;
+}
+
+.bg-paladin {
+    background-color: var(--paladin-color) !important;
+}
+
+.bg-priest {
+    background-color: var(--priest-color) !important;
+}
+
+.bg-rogue {
+    background-color: var(--rogue-color) !important;
+}
+
+.bg-shaman {
+    background-color: var(--shaman-color) !important;
+}
+
+.bg-warlock {
+    background-color: var(--warlock-color) !important;
+}
+
+.bg-warrior {
+    background-color: var(--warrior-color) !important;
+}
+
+
+#combinationsTable img {
+    border-radius: 10px;
+    width: 40px;
+}
+
+#combinationsTable span {
+    margin-right: 2px;
+}
+
+#combinationsTable tr td:nth-child(1) {
+    width: 300px;
+}
+
+#combinationsTable tr td:nth-child(2),
+#combinationsTable tr td:nth-child(3) {
+    width: 1px;
+    text-align: right;
+}
+
+#combinationsTable tr td:nth-child(4) {
+    width: 370px;
+}
