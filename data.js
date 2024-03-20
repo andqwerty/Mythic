@@ -221,3 +221,49 @@ function combinationUtility(players) {
         stopsPrMinute: stops.reduce((v, a) => 60 / a + v, 0)
     }
 }
+
+function generateCombinations(playerSpecs, multiSameClass, multiSameSpec) {
+    let allCombinations = generateCombinationsRecursive(playerSpecs);
+    let validCombinations = [];
+
+    allCombinations.forEach(c => {
+
+        // Validate 1tank & 1healer
+        let tankCount = c.filter(x => x.startsWith("tank_")).length;
+        let healerCount = c.filter(x => x.startsWith("healer_")).length;
+        if (tankCount != 1 || healerCount != 1)
+            return;
+
+        if (!multiSameClass) {
+            // Remove dublicate classes
+            let comboClasses = c.map(x => x.substring(x.indexOf('_') + 1, x.lastIndexOf('_')));
+            let dublicates = comboClasses.filter((item, index) => comboClasses.indexOf(item) !== index);
+            if (dublicates.length > 0)
+                return;
+        }
+
+        if (!multiSameSpec) {
+            // Remove dublicate specs
+            let comboSpecs = c.map(x => x.substring(x.lastIndexOf('_') + 1));
+            let dublicates = comboSpecs.filter((item, index) => comboSpecs.indexOf(item) !== index);
+            if (dublicates.length > 0)
+                return;
+        }
+
+
+        // Sorting tank > healer > melee > ranged
+        c = [c.filter(x => x.startsWith('tank_')), c.filter(x => x.startsWith('healer_')), c.filter(x => x.startsWith('melee_')), c.filter(x => x.startsWith('ranged_'))].flat();
+        validCombinations.push(c.map(x => getSpec(x)));
+    });
+
+    return validCombinations;
+}
+
+function generateCombinationsRecursive(list, n = 0, result = [], current = []) {
+    if (n === list.length)
+        result.push(current);
+    else
+        list[n].forEach(item => generateCombinationsRecursive(list, n + 1, result, [...current, item]));
+
+    return result;
+}
