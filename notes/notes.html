@@ -4,10 +4,184 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Mythic Notes</title>
+    <title>M-Notes</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css" />
+    <link rel="stylesheet" href="app.css" />
 </head>
 
 <body>
-    <h1>Hello World</h1>
+    <section class="section">
+        <div class="container">
+
+            <div class="mb-5">
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider round"></span>
+                </label>
+                <p class="is-inline-block mr-4">Warrior</p>
+
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider round"></span>
+                </label>
+                <p class="is-inline-block mr-4">Paladin</p>
+
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider round"></span>
+                </label>
+                <p class="is-inline-block mr-4">Mage</p>
+            </div>
+
+            <div class="tabs is-centered is-boxed">
+                <ul>
+                    <li class="is-active" data-tab="murd">
+                        <a>MURD</a>
+                    </li>
+                    <li data-tab="nalo">
+                        <a>NALO</a>
+                    </li>
+                    <li data-tab="vale">
+                        <a>VALE</a>
+                    </li>
+                    <li data-tab="void">
+                        <a>VOID</a>
+                    </li>
+                    <li data-tab="fang">
+                        <a>FANG</a>
+                    </li>
+                    <li data-tab="rlp">
+                        <a>RLP</a>
+                    </li>
+                    <li data-tab="tos">
+                        <a>TOS</a>
+                    </li>
+                    <li data-tab="kr">
+                        <a>KR</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div id="tab-content">
+                <div data-content="murd">
+                    <table class="table is-hoverable">
+                        <tr>
+                            <td>B1</td>
+                            <td>
+                                <p class="warrior"><s>sr</s><s class="rename">1230298</s></p>
+                                <p>Dispel <s class="rename">1228198</s></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>B2</td>
+                            <td>
+                                <p class="warrior">
+                                    <s>sr</s><s class="rename">1222795</s>???
+                                </p>
+                                <p>
+                                    <s>dispel</s> Poison
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>B3</td>
+                            <td>
+                                <p class="warrior">
+                                    <s>inter</s><s class="rename">1214641</s>???
+                                </p>
+                                <p>
+                                    <s>def</s><s class="rename">474197</s>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>B4</td>
+                            <td>
+                                <p>Hold infernal i kanten.</p>
+                                <p><s class="rename">474462</s> Stack cirkler</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div data-content="nalo">
+                    <table class="table is-hoverable">
+                        <tr>
+                            <td>B1</td>
+                            <td>
+                                <p><s>def</s><s class="rename">1234681</s></p>
+                                <p>Soak <s class="rename">1235105</s></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>B2</td>
+                            <td>
+                                <p><s>dispel</s><s class="rename">1235548</s> (<s>sr</s> ???)</p>
+                                <p><s class="rename">1235623</s> Stack i kanten</p>
+                                <p>Bait spikes i kanten</p>
+                                <p><s class="rename">1235656</s> Stå i død spike pøl</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>B3</td>
+                            <td>
+                                <p><s class="rename">1242860</s> Stack i kanten</p>
+                                <p><s class="rename">1297797</s> Tank soak</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="is-active" data-content="vale">
+                    <table class="table is-hoverable">
+                        <tr>
+                            <td>B1</td>
+                            <td>
+                                <p><s>def</s><s class="rename">1234753</s></p>
+                                <p class="warrior"><s>inter</s><s class="rename">1235642</s> ???</p>
+                                <p>Soak <s class="rename">1235564</s></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>B2</td>
+                            <td>
+                                <p><s class="rename">1236746</s>(root) Stack</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>B3</td>
+                            <td>
+                                <p><s>def</s><s class="rename">1241058</s></p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div data-content="rlp">
+                    <table class="table is-hoverable">
+                        <tr>
+                            <td>Z1</td>
+                            <td>
+                                <p class="tank"><s class="rename">1305225</s> stacks, CC/Kite</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>B1</td>
+                            <td>
+                                <p class="warrior"><s>sr</s><s class="rename">372808</s></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Z2</td>
+                            <td>
+                                <p class="warrior"><s>sr</s> Infernal <s class="rename">1305955</s></p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="app.js"></script>
 </body>
+
 </html>
